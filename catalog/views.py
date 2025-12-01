@@ -24,14 +24,24 @@ def index(request):
 class BookListView(generic.ListView):
     model = Book
     paginate_by = 2
-    # template_name = 'book_list.html'
+    template_name = 'catalog/book_list.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(BookListView, self).get_context_data(**kwargs)
-    #     print(context)
-    #     context['some_data'] = 'This is just some data'
-    #     return context
+    def get_context_data(self, **kwargs):
+        context = super(BookListView, self).get_context_data(**kwargs)
+        print(context)
+        context['some_data'] = 'This is just some data'
+        return context
 
 
 class BookDetailView(generic.DetailView):
     model = Book
+
+class AuthorListView(generic.ListView):
+    model = Author
+    paginate_by = 10
+    template_name = 'catalog/author_list.html'  # можно не указывать — будет по умолчанию
+    context_object_name = 'author_list'         # по умолчанию и так author_list
+
+class AuthorDetailView(generic.DetailView):
+    model = Author
+    template_name = 'catalog/author_detail.html'
