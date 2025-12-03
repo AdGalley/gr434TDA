@@ -1,5 +1,27 @@
+.page-links a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.page-links a:hover {
+  text-decoration: underline;
+}
+
+.page-current {
+  font-weight: bold;
+  margin: 0 10px;
+}
+
 .sidebar-nav {
   margin-top: 20px;
   padding: 0;
   list-style: none;
+}
+#logout-form {
+  display: inline;
+}
+#logout-form button {
+  padding: 0;
+  margin: 0;
 }

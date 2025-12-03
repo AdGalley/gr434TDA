@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  <title>All Borrowed Books</title>
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">All Borrowed Books</h1>
+
+  {% if bookinstance_list %}
+    <ul class="list-unstyled">
+      {% for bookinst in bookinstance_list %}
+        <li class="mb-2 {% if bookinst.is_overdue %}text-danger{% endif %}">
+          <strong>{{ bookinst.book.title }}</strong>
+          <span class="text-muted">({{ bookinst.due_back|date:"M. d, Y" }})</span>
+          —
+          <em>{{ bookinst.borrower.get_username }}</em>
+        </li>
+      {% endfor %}
+    </ul>
+    {% if is_paginated %}
+      <div class="pagination">
+        <span class="page-links">
+          {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="page-current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    {% endif %}
+
+  {% else %}
+    <p>No borrowed books.</p>
+  {% endif %}
+
+{% endblock %}ock %}
+
+#a460e04c-6cca-4ccf-b50b-8af37c792d93
